@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uD0-d6-fG5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uD0-d6-fG5">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -54,7 +54,13 @@
                             <constraint firstItem="V8f-Hl-FH3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="wpA-OP-lgS"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Good List" largeTitleDisplayMode="always" id="fcv-Km-zyO"/>
+                    <navigationItem key="navigationItem" title="Good List" largeTitleDisplayMode="always" id="fcv-Km-zyO">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="mqh-TX-U69">
+                            <connections>
+                                <segue destination="MVk-Ts-Azs" kind="presentation" id="rfq-ZI-aiG"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="myTableView" destination="V8f-Hl-FH3" id="q3X-Ma-glC"/>
                         <outlet property="prioritySegmentedControl" destination="jKU-zQ-Uuh" id="n5h-1h-18S"/>
@@ -63,6 +69,62 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="944.92753623188412" y="93.75"/>
+        </scene>
+        <!--Add New Task-->
+        <scene sceneID="cDI-QZ-zVh">
+            <objects>
+                <viewController id="mwj-C1-UAc" customClass="AddTaskViewController" customModule="GoodList" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Gxj-oU-OTe">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="jmo-Kf-PNa">
+                                <rect key="frame" x="104" y="86" width="206" height="32"/>
+                                <segments>
+                                    <segment title="High"/>
+                                    <segment title="Medium"/>
+                                    <segment title="Low"/>
+                                </segments>
+                            </segmentedControl>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Your Task" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4b5-lY-Bdv">
+                                <rect key="frame" x="20" y="167" width="374" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="PCz-3h-E6Z"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Q2b-T1-yLC"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="4b5-lY-Bdv" firstAttribute="leading" secondItem="Q2b-T1-yLC" secondAttribute="leading" constant="20" id="9e6-Pr-md1"/>
+                            <constraint firstItem="Q2b-T1-yLC" firstAttribute="trailing" secondItem="4b5-lY-Bdv" secondAttribute="trailing" constant="20" id="A8S-rO-iZD"/>
+                            <constraint firstItem="4b5-lY-Bdv" firstAttribute="top" secondItem="jmo-Kf-PNa" secondAttribute="bottom" constant="50" id="EZs-BO-sAI"/>
+                            <constraint firstItem="jmo-Kf-PNa" firstAttribute="top" secondItem="Q2b-T1-yLC" secondAttribute="top" constant="30" id="JSj-a3-XeN"/>
+                            <constraint firstItem="jmo-Kf-PNa" firstAttribute="centerX" secondItem="Gxj-oU-OTe" secondAttribute="centerX" id="uwS-k2-dhU"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add New Task" id="gh7-oX-rli">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="WMe-cI-nJr">
+                            <connections>
+                                <action selector="cancelButtonPressed:" destination="mwj-C1-UAc" id="98s-5N-h5d"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="cFl-L2-0c5">
+                            <connections>
+                                <action selector="saveButtonPressed:" destination="mwj-C1-UAc" id="nwG-MB-46N"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="prioritySegmentedControl" destination="jmo-Kf-PNa" id="cee-QO-67F"/>
+                        <outlet property="taskTitleTextField" destination="4b5-lY-Bdv" id="r9k-st-KEr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wiQ-Uh-thv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2718.840579710145" y="93.75"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="j0d-rc-qnM">
@@ -81,6 +143,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dto-k7-dAq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="34.782608695652179" y="93.75"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="TNX-V4-0yu">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="MVk-Ts-Azs" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7N9-Yx-XAU">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="mwj-C1-UAc" kind="relationship" relationship="rootViewController" id="DJv-8x-J0b"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oeH-Ds-Qgo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1808.6956521739132" y="93.75"/>
         </scene>
     </scenes>
     <resources>
